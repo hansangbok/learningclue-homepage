@@ -113,3 +113,84 @@ a { color: inherit; text-decoration: none; }
   .card.big { padding: 26px; }
   .join { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
 }
+
+/* ── 수준 (입문 → 전문가) ── */
+.lvl { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.lvl.lv1 { background: #e3f4e8; color: #146c34; }
+.lvl.lv2 { background: #e3effa; color: #1a5fa8; }
+.lvl.lv3 { background: #e8eefc; color: #2456d6; }
+.lvl.lv4 { background: #efe8fb; color: #5b34b0; }
+.lvl.lv5 { background: #1B2A4A; color: #fff; }
+.ladder { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items: end; }
+.ladder > li { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 18px; }
+.ladder > li.lv1 { min-height: 200px; } .ladder > li.lv2 { min-height: 220px; } .ladder > li.lv3 { min-height: 240px; }
+.ladder > li.lv4 { min-height: 260px; } .ladder > li.lv5 { min-height: 280px; border-color: var(--brand); }
+.ladder b { display: block; margin: 12px 0 8px; color: var(--brand); font-size: 15px; }
+.ladder ul { list-style: none; font-size: 14px; color: var(--sub); }
+.ladder ul li { padding: 3px 0; }
+.field-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 32px; }
+.field-links a { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--brand); }
+.field-links a:hover { border-color: var(--action); color: var(--action); }
+.center-btns { display: flex; justify-content: center; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.btn-ghost { border: 1.5px solid var(--brand); color: var(--brand); background: var(--surface); }
+.btn-ghost:hover { background: var(--action-weak); }
+
+/* 연도별 실적 */
+.years { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.years li { border-left: 4px solid var(--action); background: var(--bg); border-radius: 0 12px 12px 0; padding: 16px 20px; }
+.years b { font-size: 15px; color: var(--sub); margin-right: 8px; }
+.years span { font-size: 24px; font-weight: 800; color: var(--brand); }
+.years small { display: block; margin-top: 4px; color: var(--sub); font-size: 13px; }
+.profile-dl { text-align: center; margin-top: 28px; }
+
+/* ── 교육 과목 찾기 ── */
+.nav a.on { color: var(--action); }
+.page-head { background: var(--brand); color: #fff; padding: 56px 0 0; }
+.page-head h1 { font-size: 34px; font-weight: 800; }
+.page-head p { color: #d3dceb; margin-top: 10px; max-width: 680px; }
+.tabs { display: flex; gap: 4px; margin-top: 32px; }
+.tab { font: inherit; font-weight: 700; font-size: 15px; padding: 12px 22px; border: 0; border-radius: 10px 10px 0 0; background: rgba(255,255,255,.1); color: #d3dceb; cursor: pointer; }
+.tab.on { background: var(--surface); color: var(--brand); }
+.sec-tight { padding: 36px 0 72px; }
+.sec-sub.left { text-align: left; margin: 0 0 24px; }
+.filters { display: grid; gap: 12px; }
+.filters input { font: inherit; font-size: 16px; padding: 13px 16px; border: 1px solid #8a919c; border-radius: 10px; width: 100%; }
+.filters input:focus { outline: 2px solid var(--action); border-color: var(--action); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: inherit; font-size: 14px; font-weight: 600; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; }
+.chip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+.count { margin: 20px 0 12px; color: var(--sub); font-size: 14px; }
+.course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.course { border: 1px solid var(--line); border-radius: 14px; padding: 20px; background: var(--surface); display: flex; flex-direction: column; }
+.course-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.fld { font-size: 12px; color: var(--sub); }
+.course h3 { font-size: 17px; color: var(--brand); margin: 12px 0 6px; line-height: 1.4; }
+.course p { color: var(--sub); font-size: 14px; }
+.course .who { margin-top: auto; padding-top: 12px; font-size: 13px; color: var(--text); }
+.empty { color: var(--sub); padding: 40px 0; text-align: center; grid-column: 1 / -1; }
+.guides { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.guide { border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: var(--surface); }
+.guide h3 { color: var(--brand); font-size: 19px; }
+.guide-for { color: var(--sub); font-size: 14px; margin: 4px 0 16px; }
+.steps { list-style: none; position: relative; }
+.steps li { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; position: relative; }
+.steps li:not(:last-child)::after { content: ""; position: absolute; left: 13px; top: 34px; bottom: -10px; width: 2px; background: var(--line); }
+.step-no { width: 28px; height: 28px; border-radius: 50%; background: var(--action-weak); color: var(--action); font-weight: 800; font-size: 13px; display: grid; place-items: center; z-index: 1; }
+.step-t { font-size: 15px; font-weight: 600; }
+.cta-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.cta-row h2 { font-size: 24px; color: var(--brand); }
+.cta-row p { color: var(--sub); margin-top: 6px; }
+
+@media (max-width: 900px) {
+  .ladder { grid-template-columns: repeat(3, 1fr); }
+  .ladder > li { min-height: 0 !important; }
+  .course-grid { grid-template-columns: 1fr 1fr; }
+  .years { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .ladder { grid-template-columns: 1fr; }
+  .course-grid, .guides { grid-template-columns: 1fr; }
+  .cta-row { flex-direction: column; align-items: flex-start; }
+  .page-head h1 { font-size: 28px; }
+  .tab { flex: 1; padding: 12px 8px; }
+}

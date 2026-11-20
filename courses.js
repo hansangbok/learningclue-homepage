@@ -55,7 +55,7 @@
     ).sort((a, b) => a.lv - b.lv || D.fields.findIndex((f) => f.id === a.f) - D.fields.findIndex((f) => f.id === b.f));
     $('count').textContent = `${list.length}개 과목`;
     $('list').innerHTML = list.length ? list.map((c) => `
-      <article class="course">
+      <article class="course" style="--lvc:var(--lv${c.lv})">
         <div class="course-top"><span class="lvl lv${c.lv}">Lv.${c.lv} ${esc(lvName(c.lv))}</span><span class="fld">${esc(fName(c.f))}</span></div>
         <h3>${esc(c.t)}</h3>
         <p>${esc(c.d)}</p>

@@ -206,10 +206,32 @@
     <span class="kicker">문의</span>
     <h2 class="sec-title">교육 문의</h2>
     <p class="sec-sub">일정 · 대상 · 인원 · 예산만 알려 주시면, 맞는 과정과 강사 프로필로 제안드립니다.</p>
-    <div class="grid-3">
-      <a class="card contact" href="tel:025081663"><span>전화</span><b>02-508-1663</b><small>평일 09:00 ~ 18:00</small></a>
-      <a class="card contact" href="mailto:ideaman@learningclue.co.kr?subject=%5B%EA%B5%90%EC%9C%A1%20%EB%AC%B8%EC%9D%98%5D"><span>이메일</span><b>ideaman@learningclue.co.kr</b><small>제안서 · RFP를 보내 주셔도 됩니다</small></a>
-      <a class="card contact" href="https://pf.kakao.com/" target="_blank" rel="noopener"><span>카카오톡</span><b>러닝클루 채널</b><small>간단한 문의는 채팅으로</small></a>
+    <div class="inq-wrap">
+      <form class="inq card" id="inq" novalidate>
+        <div class="inq-grid">
+          <label>회사명 <em>*</em><input name="company" required maxlength="80" autocomplete="organization"></label>
+          <label>담당자 성함 <em>*</em><input name="name" required maxlength="40" autocomplete="name"></label>
+          <label>이메일 <em>*</em><input name="email" type="email" required maxlength="120" autocomplete="email"></label>
+          <label>연락처<input name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="02-000-0000"></label>
+          <label class="full">교육 주제 <em>*</em><input name="topic" required maxlength="200" placeholder="예: 신입사원 생성형 AI 업무 활용"></label>
+          <label>교육 대상<input name="target" maxlength="120" placeholder="예: 입사 1년 차"></label>
+          <label>인원<input name="size" maxlength="40" placeholder="예: 40명"></label>
+          <label>희망 시기<input name="when" maxlength="80" placeholder="예: 2027년 2월"></label>
+          <label>교육 형태<select name="mode"><option value="">선택</option><option>오프라인</option><option>온라인(실시간)</option><option>혼합</option><option>아직 미정</option></select></label>
+          <label class="full">자세한 내용<textarea name="detail" rows="4" maxlength="3000" placeholder="교육 목적, 꼭 다뤄야 할 내용, 교육 시간, 예산 등을 아시는 만큼 적어 주세요."></textarea></label>
+          <label class="hp" aria-hidden="true">홈페이지<input name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <label class="agree"><input type="checkbox" name="agree"> 교육 문의 답변을 위해 회사명 · 성함 · 연락처 · 이메일을 수집 · 이용하는 데 동의합니다. (문의 처리 후 1년 보관)</label>
+        <div class="inq-foot">
+          <button type="submit" class="btn btn-main" id="inqBtn">문의 보내기</button>
+          <p class="inq-msg" id="inqMsg" role="status"></p>
+        </div>
+      </form>
+      <div class="inq-side">
+        <a class="card contact" href="tel:025081663"><span>전화</span><b>02-508-1663</b><small>평일 09:00 ~ 18:00</small></a>
+        <a class="card contact" href="mailto:ideaman@learningclue.co.kr?subject=%5B%EA%B5%90%EC%9C%A1%20%EB%AC%B8%EC%9D%98%5D"><span>이메일</span><b>ideaman@learningclue.co.kr</b><small>제안서 · RFP를 보내 주셔도 됩니다</small></a>
+        <a class="card contact" href="https://pf.kakao.com/" target="_blank" rel="noopener"><span>카카오톡</span><b>러닝클루 채널</b><small>간단한 문의는 채팅으로</small></a>
+      </div>
     </div>
     <p class="profile-dl" id="profileDl" hidden><a href="assets/learningclue_company_profile.pdf" download class="btn btn-ghost">회사소개서 내려받기 (PDF)</a></p>
   </div>
@@ -226,6 +248,33 @@
 <script>
 // 회사소개서 PDF가 올라와 있을 때만 버튼 보이기
 fetch('assets/learningclue_company_profile.pdf', { method: 'HEAD' }).then(function (r) { if (r.ok) document.getElementById('profileDl').hidden = false; }).catch(function () {});
+
+// 교육 문의 폼 → 교육운영 웹앱(doPost). 접수 확인 메일은 바로, 답변은 담당자가 확인 후
+(function () {
+  var URL = 'https://script.google.com/macros/s/AKfycbxMh9xtHYCWH10BxtiFrXzrF7ltcWCvq2cHQ7wjaa5b4nS3uJsZ8PdSzIglSZZ71ePS/exec';
+  var f = document.getElementById('inq'), btn = document.getElementById('inqBtn'), msg = document.getElementById('inqMsg');
+  var t0 = Date.now();
+  function say(text, bad) { msg.textContent = text; msg.className = 'inq-msg' + (bad ? ' bad' : ' ok'); }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = function (n) { return (f.elements[n].value || '').trim(); };
+    if (!v('company') || !v('name')) return say('회사명과 담당자 성함을 적어 주세요.', true);
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('email'))) return say('회신받으실 이메일을 정확히 적어 주세요.', true);
+    if (!v('topic')) return say('교육 주제를 적어 주세요.', true);
+    if (!f.elements.agree.checked) return say('개인정보 수집 · 이용에 동의해 주세요.', true);
+    var body = { action: 'inquiry', elapsed: Date.now() - t0, agree: true };
+    ['company', 'name', 'email', 'phone', 'topic', 'target', 'size', 'when', 'mode', 'detail', 'website'].forEach(function (n) { body[n] = v(n); });
+    btn.disabled = true; say('보내는 중입니다…');
+    fetch(URL, { method: 'POST', body: JSON.stringify(body) })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.ok) { btn.disabled = false; return say(r.error || '접수하지 못했습니다. 02-508-1663으로 연락 주세요.', true); }
+        f.reset(); btn.disabled = false;
+        say('접수되었습니다. 적어 주신 메일로 접수 확인을 보냈고, 1영업일 안에 연락드리겠습니다.');
+      })
+      .catch(function () { btn.disabled = false; say('보내지 못했습니다. 잠시 뒤 다시 시도하시거나 02-508-1663으로 연락 주세요.', true); });
+  });
+})();
 </script>
 </body>
 </html>

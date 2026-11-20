@@ -269,3 +269,27 @@ a { color: inherit; text-decoration: none; }
 .refer p { font-size: 14px; color: var(--sub); margin-top: 4px; }
 .refer .btn { margin-left: auto; flex: none; }
 @media (max-width: 680px) { .refer { flex-direction: column; align-items: flex-start; } .refer .btn { margin-left: 0; } }
+
+/* 교육 문의 폼 (2026-11-20) — 왼쪽 폼 · 오른쪽 연락처 */
+.inq-wrap { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; align-items: stretch; }
+.inq-side { display: grid; gap: 20px; grid-auto-rows: 1fr; }
+.inq-side .contact { display: flex; flex-direction: column; justify-content: center; }
+.inq { padding: 28px; }
+.inq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; }
+.inq label { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
+.inq label em { color: var(--coral, #F26B4E); font-style: normal; }
+.inq .full { grid-column: 1 / -1; }
+.inq input, .inq select, .inq textarea { display: block; width: 100%; margin-top: 6px; font: inherit; font-size: 15px; font-weight: 400; padding: 10px 12px; border: 1px solid var(--line2, #d6dae1); border-radius: var(--r); background: #fff; color: var(--ink); }
+.inq textarea { resize: vertical; }
+.inq input:focus, .inq select:focus, .inq textarea:focus { outline: 2px solid var(--p, #2456d6); border-color: var(--p, #2456d6); }
+.inq .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.inq .agree { display: flex; gap: 8px; align-items: flex-start; margin-top: 16px; font-weight: 400; font-size: 13.5px; color: var(--sub); }
+.inq .agree input { width: auto; margin: 3px 0 0; }
+.inq-foot { display: flex; align-items: center; gap: 16px; margin-top: 18px; flex-wrap: wrap; }
+.inq-foot .btn { border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+.inq-foot .btn:disabled { opacity: .6; cursor: default; }
+.inq-msg { font-size: 14px; color: var(--sub); }
+.inq-msg.ok { color: var(--p, #2456d6); font-weight: 700; }
+.inq-msg.bad { color: #C2412C; font-weight: 700; }
+@media (max-width: 900px) { .inq-wrap { grid-template-columns: 1fr; } .inq-side { grid-auto-rows: auto; } }
+@media (max-width: 560px) { .inq { padding: 20px; } .inq-grid { grid-template-columns: 1fr; } }

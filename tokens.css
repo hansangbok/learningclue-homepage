@@ -1,0 +1,118 @@
+/* ─────────────────────────────────────────────────────────────
+   러닝클루 디자인 시스템 v1.0 — 토큰 (2026-11-23)
+   근거: 홈페이지 style.css(v0.1 남색·금색) + color.css(밝은 톤 「Sunlit Paper」)
+   두 겹으로 덮어쓰던 색을 하나로 합치고, 글자 크기 24종 → 9단계로 정리
+   원칙: 60% 거의 흰 바탕 · 30% 옅은 톤 · 10% 진한 포인트 / 진한 색은 "면"이 아니라 "점"
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── 1. 기본 색 (원본 값 그대로) ── */
+  --lc-sky-500: #4C7FB8;   /* 주색 하늘빛 — 버튼·숫자·면 */
+  --lc-sky-600: #3E6C9F;   /* 눌림·마우스 올림 / 작은 글자용 하늘빛 (대비 4.8:1) */
+  --lc-sky-700: #2E5A8C;   /* 남색 — Lv.5, 진한 강조 */
+  --lc-sky-300: #8FC4E8;   /* 보조 하늘빛 — 번짐·밑줄 */
+  --lc-sky-100: #EAF2FA;   /* 옅은 하늘빛 띠 */
+  --lc-coral-500: #F26B4E; /* 코랄 — 선·점 전용 (글자 금지) */
+  --lc-coral-600: #C9482D; /* 코랄 글자용 (대비 4.5:1) — 신설 */
+  --lc-cream-50: #FBFAF7;  /* 기본 바탕 */
+  --lc-cream-100: #F4F1EA; /* 크림 구역 */
+  --lc-cream-200: #E6E1D7; /* 카드 선 */
+  --lc-cream-300: #E2DDD2; /* 구역 선 · 입력 선 */
+  --lc-ink-900: #20242B;   /* 글자 · 꼬리말 바탕 */
+  --lc-ink-600: #5A616C;   /* 보조 글자 */
+  --lc-ink-500: #6B717B;   /* 흐린 글자 (기존 #8A8F98 → 대비 미달로 교체) */
+  --lc-ink-300: #A9AEB6;   /* 어두운 바탕 위 글자 */
+  --lc-white: #FFFFFF;
+  --lc-red-600: #C2412C;   /* 오류 */
+
+  /* 수준 5단계 */
+  --lc-lv1: #E3EEF8; --lc-lv2: #C4DCF1; --lc-lv3: #8FC4E8; --lc-lv4: #4C7FB8; --lc-lv5: #2E5A8C;
+
+  /* ── 2. 의미 색 (화면에서는 이것만 씀) ── */
+  --bg: var(--lc-cream-50);
+  --bg-soft: var(--lc-cream-100);
+  --bg-accent: var(--lc-sky-100);
+  --bg-card: var(--lc-white);
+  --bg-inverse: var(--lc-ink-900);
+
+  --fg1: var(--lc-ink-900);
+  --fg2: var(--lc-ink-600);
+  --fg3: var(--lc-ink-500);
+  --fg-inverse: var(--lc-ink-300);
+
+  --line: var(--lc-cream-200);
+  --line-strong: var(--lc-cream-300);
+  --line-ink: var(--lc-ink-900);
+
+  --primary: var(--lc-sky-500);
+  --primary-hover: var(--lc-sky-600);
+  --primary-text: var(--lc-sky-600);   /* 16px 이하 하늘빛 글자 */
+  --primary-weak: var(--lc-sky-100);
+  --accent-line: var(--lc-coral-500);  /* 코랄: 2~3px 선, 점 */
+  --accent-text: var(--lc-coral-600);
+  --danger: var(--lc-red-600);
+  --focus: var(--lc-sky-500);
+
+  /* ── 3. 글꼴 ── */
+  --font-sans: Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+  /* 글자 크기 9단계 (PC / 휴대폰은 아래 @media) */
+  --fs-display: 46px;  /* 첫 화면 큰 문구 */
+  --fs-h1: 34px;       /* 하위 페이지 제목 */
+  --fs-stat: 40px;     /* 숫자 띠 */
+  --fs-h2: 28px;       /* 구역 제목 */
+  --fs-statement: 24px;/* 사명 문장 */
+  --fs-h3: 20px;       /* 카드 제목 */
+  --fs-h4: 17px;       /* 작은 제목 · 강조 본문 */
+  --fs-body: 16px;     /* 본문 */
+  --fs-small: 14px;    /* 카드 본문 · 보조 */
+  --fs-caption: 13px;  /* 꼬리표 · 캡션 (최소 크기) */
+
+  --lh-tight: 1.22; --lh-snug: 1.4; --lh-body: 1.6;
+  --ls-display: -0.02em; --ls-title: -0.01em; --ls-kicker: 0.08em;
+  --fw-regular: 400; --fw-semibold: 600; --fw-bold: 700; --fw-heavy: 800;
+
+  /* ── 4. 간격 (4px 단위) ── */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+  --sp-6: 24px; --sp-7: 28px; --sp-8: 32px; --sp-10: 40px; --sp-14: 56px; --sp-22: 88px;
+  --section-y: var(--sp-22);
+  --wrap: 1180px;
+  --header-h: 64px;
+
+  /* ── 5. 모서리 · 선 · 그림자 ── */
+  --r-sm: 3px;   /* 수준 표식 · 칩 */
+  --r: 4px;      /* 버튼 · 카드 · 입력 */
+  --r-pill: 999px; /* 쓰지 않음 (기록용) */
+  --bw: 1px; --bw-strong: 1.5px; --bw-accent: 3px;
+  --shadow: none; /* 그림자 쓰지 않음 — 선으로 나눔 */
+
+  /* ── 6. 움직임 ── */
+  --ease: cubic-bezier(.2,.6,.2,1);
+  --dur-fast: 120ms; --dur: 200ms;
+
+  /* ── 7. 누르는 영역 ── */
+  --hit: 44px; --btn-h: 48px; --chip-h: 36px;
+}
+
+@media (max-width: 680px) {
+  :root {
+    --fs-display: 30px; --fs-h1: 26px; --fs-stat: 30px; --fs-h2: 22px;
+    --fs-statement: 19px; --fs-h3: 18px; --section-y: var(--sp-14);
+    --chip-h: 40px;
+  }
+}
+
+/* ── 의미 글자 스타일 ── */
+.lc-display { font: var(--fw-heavy) var(--fs-display)/var(--lh-tight) var(--font-sans); letter-spacing: var(--ls-display); color: var(--fg1); }
+.lc-h1 { font: var(--fw-heavy) var(--fs-h1)/var(--lh-tight) var(--font-sans); letter-spacing: var(--ls-display); color: var(--fg1); }
+.lc-h2 { font: var(--fw-heavy) var(--fs-h2)/var(--lh-snug) var(--font-sans); letter-spacing: var(--ls-title); color: var(--fg1); }
+.lc-h3 { font: var(--fw-bold) var(--fs-h3)/var(--lh-snug) var(--font-sans); color: var(--fg1); }
+.lc-h4 { font: var(--fw-bold) var(--fs-h4)/var(--lh-snug) var(--font-sans); color: var(--fg1); }
+.lc-statement { font: var(--fw-bold) var(--fs-statement)/1.5 var(--font-sans); letter-spacing: var(--ls-title); color: var(--fg1); }
+.lc-body { font: var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans); color: var(--fg1); }
+.lc-lead { font: var(--fw-regular) var(--fs-h4)/var(--lh-body) var(--font-sans); color: var(--fg2); }
+.lc-small { font: var(--fw-regular) var(--fs-small)/var(--lh-body) var(--font-sans); color: var(--fg2); }
+.lc-caption { font: var(--fw-regular) var(--fs-caption)/1.5 var(--font-sans); color: var(--fg3); }
+.lc-kicker { font: var(--fw-heavy) var(--fs-caption)/1 var(--font-sans); letter-spacing: var(--ls-kicker); color: var(--primary-text); }
+.lc-stat { font: var(--fw-heavy) var(--fs-stat)/1.1 var(--font-sans); letter-spacing: var(--ls-display); color: var(--primary); font-variant-numeric: tabular-nums; }
+.lc-num { font-variant-numeric: tabular-nums; }

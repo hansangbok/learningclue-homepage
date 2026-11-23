@@ -14,7 +14,7 @@
   function fName(f) { return (D.fields.find((x) => x.id === f) || {}).name || ''; }
 
   function init() {
-    $('updated').textContent = '과목 목록 갱신 ' + D.updated + ' · © 2026 Learning Clue';
+    $('updated').textContent = '과목 목록 갱신 ' + D.updated + ' · © 2026 ㈜러닝클루';
     const fc = [{ id: 'all', name: '전체 분야' }].concat(D.fields);
     $('fieldChips').innerHTML = fc.map((f) => `<button class="chip${f.id === 'all' ? ' on' : ''}" data-f="${f.id}">${esc(f.name)}</button>`).join('');
     const lc = [{ lv: 0, name: '전체 수준' }].concat(D.levels);
@@ -55,7 +55,7 @@
     ).sort((a, b) => a.lv - b.lv || D.fields.findIndex((f) => f.id === a.f) - D.fields.findIndex((f) => f.id === b.f));
     $('count').textContent = `${list.length}개 과목`;
     $('list').innerHTML = list.length ? list.map((c) => `
-      <article class="course" style="--lvc:var(--lv${c.lv})">
+      <article class="course" style="--lvc:var(--lc-lv${c.lv})">
         <div class="course-top"><span class="lvl lv${c.lv}">Lv.${c.lv} ${esc(lvName(c.lv))}</span><span class="fld">${esc(fName(c.f))}</span></div>
         <h3>${esc(c.t)}</h3>
         <p>${esc(c.d)}</p>
